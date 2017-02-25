@@ -1,0 +1,20 @@
+# Br forms menu items definition
+br_forms.overview:
+  title: 'BR Settings'
+  route_name: br_forms.overview
+  description: 'Configure BR settings.'
+  parent: system.admin_config
+
+br_forms.eloqua.general.settings:
+  title: 'Eloqua general settings.'
+  route_name: br_forms.eloqua.general.settings
+  description: 'Administer eloqua general settings.'
+  parent: br_forms.overview
+  weight: 9
+
+br_forms.eloqua.configure.form_ids:
+  title: 'Map Eloqua form IDs.'
+  route_name: br_forms.eloqua.configure.form_ids
+  description: 'Map eloqua form IDs.'
+  parent: br_forms.overview
+  weight: 10

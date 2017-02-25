@@ -1,0 +1,110 @@
+<?php
+
+/**
+ * @file
+ * Extra functionality for the br forms.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+function br_forms_cron() {
+  /** @var \Drupal\br_forms\EloquaService $eloqua_service */
+  $eloqua_service = \Drupal::service('br_forms.eloqua');
+
+  // Clean up all data that was sent.
+  $eloqua_service->deleteEloquaSubmittedData();
+
+  // Submit data to eloqua.
+  $eloqua_service->postEloquaSavedData();
+}
+
+/**
+ * Implements hook_theme().
+ */
+function br_forms_theme() {
+  return array(
+    'eloqua_form' => array(
+      'variables' => array(
+        'form_id' => NULL,
+        'fields' => array(),
+        'path_prefix' => NULL,
+        'extra_fields' => array(),
+        'extra_properties' => array(),
+      ),
+    ),
+    'eloqua_field' => array(
+      'variables' => array(
+        'eloqua_field_type' => NULL,
+        'machine_name' => NULL,
+        'label' => NULL,
+        'required' => NULL,
+        'options' => array(),
+        'validations' => array(),
+        'validation_attr' => NULL,
+      ),
+    ),
+  );
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function br_forms_theme_suggestions_eloqua_form(array $variables) {
+  $suggestions = array();
+  $form_id = $variables['form_id'];
+
+  // Render form specific templates.
+  $suggestions[] = 'eloqua_form__' . $form_id;
+
+  return $suggestions;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function br_forms_theme_suggestions_eloqua_field(array $variables) {
+  $suggestions = array();
+  $field_type = $variables['eloqua_field_type'];
+  $machine_name = $variables['machine_name'];
+
+  // Render form specific templates.
+  $suggestions[] = 'eloqua_field__' . $field_type;
+  $suggestions[] = 'eloqua_field__' . $machine_name;
+  $suggestions[] = 'eloqua_field__' . $field_type . '__' . $machine_name;
+
+  return $suggestions;
+}
+
+
+
+//array (
+//  'firstName' =>
+//    array (
+//      'label' => 'First Name',
+//      'required' => true,
+//      'validations' =>
+//        array (
+//          0 => 'IsRequiredCondition',
+//          1 => 'TextLengthCondition',
+//        ),
+//      'validation_attr' =>
+//        array (
+//          'TextLengthCondition' =>
+//            array (
+//              'min' => '1',
+//              'max' => '10',
+//            ),
+//        ),
+//    ),
+//  'email' =>
+//    array (
+//      'label' => 'Email Address',
+//      'required' => true,
+//      'validations' =>
+//        array (
+//          0 => 'IsRequiredCondition',
+//          1 => 'IsEmailAddressCondition',
+//        ),
+//    ),
+//)

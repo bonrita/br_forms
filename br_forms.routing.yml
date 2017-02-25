@@ -1,0 +1,46 @@
+br_forms.overview:
+  path: '/admin/structure/br-settings'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'BR settings'
+  requirements:
+    _permission: 'administer BR configurations'
+
+br_forms.eloqua.general.settings:
+  path: '/admin/structure/br-settings/eloqua-credentials'
+  defaults:
+    _form: 'Drupal\br_forms\Form\EloquaGeneralSettingsForm'
+    _title: 'General eloqua settings'
+  requirements:
+    _permission: 'administer eloqua general settings'
+  options:
+    _admin_route: TRUE
+
+br_forms.eloqua.configure.form_ids:
+  path: '/admin/structure/br-settings/eloqua-form-ids'
+  defaults:
+    _form: 'Drupal\br_forms\Form\EloquaMappingForm'
+    _title: 'Eloqua form mapping'
+  requirements:
+    _permission: 'administer eloqua form mapping'
+  options:
+    _admin_route: TRUE
+
+br_forms.eloqua.configure.form_fields:
+  path: '/admin/structure/br-settings/eloqua-form-fields/{domain}/{html_form_id}/{eloqua_form_id}'
+  defaults:
+    _form: 'Drupal\br_forms\Form\EloquaMappingFormFields'
+    _title: 'Eloqua form field mapping'
+  requirements:
+    _permission: 'administer eloqua form mapping'
+    eloqua_form_id: \d+
+  options:
+    _admin_route: TRUE
+
+br_forms.site_page:
+  path: '/eloqua-form/{html_form}'
+  defaults:
+    _title_callback: '\Drupal\br_forms\Controller\EloquaFormController::getPageTitle'
+    _controller: 'Drupal\br_forms\Controller\EloquaFormController::pageForm'
+  requirements:
+    _permission: 'access content'

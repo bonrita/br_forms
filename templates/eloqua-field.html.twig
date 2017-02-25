@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a forum.
+ *
+ * @see template_preprocess_forums()
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="form-row">
+  <label class="form-label" for="firstNameField">
+    Your Name ORIGINAL: <span class="is-required">(required)</span>
+  </label>
+  <div class="input-wrapper">
+    <input class="form-input" id="firstNameField" type="text" name="name" placeholder="Name" data-validation="IsRequiredCondition,PreventUrlCondition">
+    <ul class="error-list">
+      <li class="error length-error">Your entry is not of the correct length</li>
+      <li class="error email-error">Please enter a correct email address</li>
+      <li class="error url-error">Your entry should not contain any URLS</li>
+      <li class="error required-error">This field is required</li>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+services:
+  br_forms.eloqua:
+    class: Drupal\br_forms\EloquaService
+    arguments: ["@language_manager", "@entity_type.manager", "@config.factory"]
+  br_forms.normalizer.complex_data:
+    class: Drupal\br_forms\Normalizer\EloquaFormNormalizer
+    tags:
+      - { name: normalizer }
+  br_forms.route_subscriber:
+    class: Drupal\br_forms\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

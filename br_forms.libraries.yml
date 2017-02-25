@@ -1,0 +1,8 @@
+
+br_forms.forms:
+  version: VERSION
+  js:
+    js/forms.js:  {}
+  dependencies:
+    - core/drupal
+    - core/jquery

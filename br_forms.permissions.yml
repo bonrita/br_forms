@@ -1,0 +1,11 @@
+administer BR configurations:
+  title: Administer BR configurations
+  description: This permission is necessary for any users that may need to edit BR settings.
+
+administer eloqua general settings:
+  title: Administer eloqua general settings
+  description: This permission is necessary for any users that may need to edit ELOQUA general settings.
+
+administer eloqua form mapping:
+  title: Administer eloqua form mapping
+  description: This permission is necessary for any users that may need to map eloqua form IDs.
